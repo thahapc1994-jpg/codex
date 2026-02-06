@@ -21,6 +21,7 @@ mod safety_check_downgrade;
 mod skill_approval;
 mod skills_list;
 mod thread_archive;
+mod thread_close;
 mod thread_fork;
 mod thread_list;
 mod thread_loaded_list;
