@@ -2681,7 +2681,6 @@ theme = "dracula"
                 show_tooltips: true,
                 alternate_screen: AltScreenMode::Auto,
                 status_line: None,
-                theme: None,
                 terminal_title: None,
                 theme: None,
             }
