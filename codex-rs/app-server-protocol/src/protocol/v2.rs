@@ -2389,6 +2389,7 @@ pub struct ErrorNotification {
     pub turn_id: String,
 }
 
+/// EXPERIMENTAL - realtime conversation audio chunk.
 #[derive(Serialize, Deserialize, Debug, Default, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
@@ -2433,6 +2434,7 @@ impl From<RealtimeConversationAudioChunk> for CoreRealtimeAudioFrame {
     }
 }
 
+/// EXPERIMENTAL - start a thread-scoped realtime conversation.
 #[derive(Serialize, Deserialize, Debug, Default, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
@@ -2443,11 +2445,13 @@ pub struct RealtimeConversationStartParams {
     pub session_id: Option<String>,
 }
 
+/// EXPERIMENTAL - response for starting a realtime conversation.
 #[derive(Serialize, Deserialize, Debug, Default, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
 pub struct RealtimeConversationStartResponse {}
 
+/// EXPERIMENTAL - append audio input to a realtime conversation.
 #[derive(Serialize, Deserialize, Debug, Default, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
@@ -2456,11 +2460,13 @@ pub struct RealtimeConversationAudioAppendParams {
     pub audio: RealtimeConversationAudioChunk,
 }
 
+/// EXPERIMENTAL - response for appending realtime audio input.
 #[derive(Serialize, Deserialize, Debug, Default, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
 pub struct RealtimeConversationAudioAppendResponse {}
 
+/// EXPERIMENTAL - append text input to a realtime conversation.
 #[derive(Serialize, Deserialize, Debug, Default, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
@@ -2469,11 +2475,13 @@ pub struct RealtimeConversationTextAppendParams {
     pub text: String,
 }
 
+/// EXPERIMENTAL - response for appending realtime text input.
 #[derive(Serialize, Deserialize, Debug, Default, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
 pub struct RealtimeConversationTextAppendResponse {}
 
+/// EXPERIMENTAL - stop a thread-scoped realtime conversation.
 #[derive(Serialize, Deserialize, Debug, Default, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
@@ -2481,11 +2489,13 @@ pub struct RealtimeConversationStopParams {
     pub thread_id: String,
 }
 
+/// EXPERIMENTAL - response for stopping a realtime conversation.
 #[derive(Serialize, Deserialize, Debug, Default, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
 pub struct RealtimeConversationStopResponse {}
 
+/// EXPERIMENTAL - emitted when realtime conversation startup is accepted.
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
@@ -2494,6 +2504,7 @@ pub struct RealtimeConversationStartedNotification {
     pub session_id: Option<String>,
 }
 
+/// EXPERIMENTAL - emitted when the backend prompt for realtime changes.
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
@@ -2502,6 +2513,7 @@ pub struct RealtimeConversationSessionUpdatedNotification {
     pub backend_prompt: Option<String>,
 }
 
+/// EXPERIMENTAL - raw non-audio realtime item emitted by the backend.
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
@@ -2510,6 +2522,7 @@ pub struct RealtimeConversationItemAddedNotification {
     pub item: JsonValue,
 }
 
+/// EXPERIMENTAL - streamed output audio emitted by the realtime backend.
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
@@ -2518,6 +2531,7 @@ pub struct RealtimeConversationOutputAudioDeltaNotification {
     pub audio: RealtimeConversationAudioChunk,
 }
 
+/// EXPERIMENTAL - emitted when realtime conversation encounters an error.
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]
@@ -2526,6 +2540,7 @@ pub struct RealtimeConversationErrorNotification {
     pub message: String,
 }
 
+/// EXPERIMENTAL - emitted when the realtime transport closes.
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 #[ts(export_to = "v2/")]

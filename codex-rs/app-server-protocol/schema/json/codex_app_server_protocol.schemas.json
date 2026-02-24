@@ -10459,6 +10459,7 @@
         ]
       },
       "RealtimeConversationAudioChunk": {
+        "description": "EXPERIMENTAL - realtime conversation audio chunk.",
         "properties": {
           "data": {
             "type": "string"
@@ -10491,6 +10492,7 @@
       },
       "RealtimeConversationClosedNotification": {
         "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "EXPERIMENTAL - emitted when the realtime transport closes.",
         "properties": {
           "reason": {
             "type": [
@@ -10510,6 +10512,7 @@
       },
       "RealtimeConversationErrorNotification": {
         "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "EXPERIMENTAL - emitted when realtime conversation encounters an error.",
         "properties": {
           "message": {
             "type": "string"
@@ -10527,6 +10530,7 @@
       },
       "RealtimeConversationItemAddedNotification": {
         "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "EXPERIMENTAL - raw non-audio realtime item emitted by the backend.",
         "properties": {
           "item": true,
           "threadId": {
@@ -10542,6 +10546,7 @@
       },
       "RealtimeConversationOutputAudioDeltaNotification": {
         "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "EXPERIMENTAL - streamed output audio emitted by the realtime backend.",
         "properties": {
           "audio": {
             "$ref": "#/definitions/v2/RealtimeConversationAudioChunk"
@@ -10559,6 +10564,7 @@
       },
       "RealtimeConversationSessionUpdatedNotification": {
         "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "EXPERIMENTAL - emitted when the backend prompt for realtime changes.",
         "properties": {
           "backendPrompt": {
             "type": [
@@ -10578,6 +10584,7 @@
       },
       "RealtimeConversationStartedNotification": {
         "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "EXPERIMENTAL - emitted when realtime conversation startup is accepted.",
         "properties": {
           "sessionId": {
             "type": [
