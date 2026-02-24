@@ -175,6 +175,10 @@ impl Feature {
     }
 }
 
+fn js_repl_required_node_version() -> &'static str {
+    include_str!("../../node-version.txt").trim_end()
+}
+
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct LegacyFeatureUsage {
     pub alias: String,
@@ -425,6 +429,29 @@ pub struct FeatureSpec {
     pub default_enabled: bool,
 }
 
+impl FeatureSpec {
+    pub fn experimental_menu_name(&self) -> Option<&'static str> {
+        self.stage.experimental_menu_name()
+    }
+
+    pub fn experimental_menu_description(&self) -> Option<String> {
+        match self.id {
+            Feature::JsRepl => Some(format!(
+                "Enable a persistent Node-backed JavaScript REPL for interactive website debugging and other inline JavaScript execution capabilities. Requires Node >= v{} installed.",
+                js_repl_required_node_version()
+            )),
+            _ => self
+                .stage
+                .experimental_menu_description()
+                .map(str::to_owned),
+        }
+    }
+
+    pub fn experimental_announcement(&self) -> Option<&'static str> {
+        self.stage.experimental_announcement()
+    }
+}
+
 pub const FEATURES: &[FeatureSpec] = &[
     // Stable features.
     FeatureSpec {
@@ -460,7 +487,11 @@ pub const FEATURES: &[FeatureSpec] = &[
     FeatureSpec {
         id: Feature::JsRepl,
         key: "js_repl",
-        stage: Stage::UnderDevelopment,
+        stage: Stage::Experimental {
+            name: "JavaScript REPL",
+            menu_description: "Enable a persistent Node-backed JavaScript REPL for interactive website debugging and other inline JavaScript execution capabilities.",
+            announcement: "NEW: JavaScript REPL is now available in /experimental. Enable it, then start a new chat or restart Codex to use it.",
+        },
         default_enabled: false,
     },
     FeatureSpec {
@@ -793,6 +824,23 @@ mod tests {
             Stage::UnderDevelopment
         );
         assert_eq!(Feature::UseLinuxSandboxBwrap.default_enabled(), false);
+    }
+
+    #[test]
+    fn js_repl_is_experimental_and_user_toggleable() {
+        let spec = Feature::JsRepl.info();
+        let stage = spec.stage;
+
+        assert!(matches!(stage, Stage::Experimental { .. }));
+        assert_eq!(spec.experimental_menu_name(), Some("JavaScript REPL"));
+        assert_eq!(
+            spec.experimental_menu_description(),
+            Some(format!(
+                "Enable a persistent Node-backed JavaScript REPL for interactive website debugging and other inline JavaScript execution capabilities. Requires Node >= v{} installed.",
+                js_repl_required_node_version()
+            ))
+        );
+        assert_eq!(Feature::JsRepl.default_enabled(), false);
     }
 
     #[test]

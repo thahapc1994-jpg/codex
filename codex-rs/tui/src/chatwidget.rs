@@ -5971,12 +5971,12 @@ impl ChatWidget {
         let features: Vec<ExperimentalFeatureItem> = FEATURES
             .iter()
             .filter_map(|spec| {
-                let name = spec.stage.experimental_menu_name()?;
-                let description = spec.stage.experimental_menu_description()?;
+                let name = spec.experimental_menu_name()?;
+                let description = spec.experimental_menu_description()?;
                 Some(ExperimentalFeatureItem {
                     feature: spec.id,
                     name: name.to_string(),
-                    description: description.to_string(),
+                    description,
                     enabled: self.config.features.enabled(spec.id),
                 })
             })

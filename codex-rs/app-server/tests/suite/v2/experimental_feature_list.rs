@@ -45,15 +45,11 @@ async fn experimental_feature_list_returns_feature_metadata_with_stage() -> Resu
         .iter()
         .map(|spec| {
             let (stage, display_name, description, announcement) = match spec.stage {
-                Stage::Experimental {
-                    name,
-                    menu_description,
-                    announcement,
-                } => (
+                Stage::Experimental { .. } => (
                     ExperimentalFeatureStage::Beta,
-                    Some(name.to_string()),
-                    Some(menu_description.to_string()),
-                    Some(announcement.to_string()),
+                    spec.experimental_menu_name().map(str::to_string),
+                    spec.experimental_menu_description(),
+                    spec.experimental_announcement().map(str::to_string),
                 ),
                 Stage::UnderDevelopment => {
                     (ExperimentalFeatureStage::UnderDevelopment, None, None, None)

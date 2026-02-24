@@ -1,4 +1,5 @@
 use codex_core::features::FEATURES;
+use codex_core::features::FeatureSpec;
 use codex_protocol::account::PlanType;
 use lazy_static::lazy_static;
 use rand::Rng;
@@ -42,7 +43,7 @@ lazy_static! {
 fn experimental_tooltips() -> Vec<&'static str> {
     FEATURES
         .iter()
-        .filter_map(|spec| spec.stage.experimental_announcement())
+        .filter_map(FeatureSpec::experimental_announcement)
         .collect()
 }
 
