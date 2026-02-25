@@ -1271,7 +1271,9 @@ mod tests {
             json!({
                 "method": "collaborationMode/list",
                 "id": 7,
-                "params": {}
+                "params": {
+                    "threadId": null
+                }
             }),
             serde_json::to_value(&request)?,
         );
