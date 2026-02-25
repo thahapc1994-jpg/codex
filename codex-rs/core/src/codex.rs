@@ -2653,6 +2653,9 @@ impl Session {
                             break;
                         }
                         if turn.has_preturn_compaction || turn.has_midturn_compaction {
+                            // This later surviving turn compacted (for example via `/compact` or
+                            // auto-compaction) but did not persist a replacement TurnContextItem,
+                            // so conservatively invalidate any older baseline we might select.
                             compaction_cleared_reference_context_item = true;
                         }
                     }
